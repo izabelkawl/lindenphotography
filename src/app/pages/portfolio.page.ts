@@ -59,7 +59,7 @@ export class PortfolioPage {
 
     return {
       title,
-      image: `/images/${encodeURIComponent(file)}`,
+      image: `images/${encodeURIComponent(file)}`,
       alt: `Zdjecie portfolio ${title}`,
     };
   });
