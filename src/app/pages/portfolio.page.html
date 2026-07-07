@@ -1,0 +1,88 @@
+<main class="page-main">
+  <section class="section portfolio" aria-labelledby="portfolio-title">
+    <div class="section-title-wrap">
+      <p class="eyebrow">Wybrane historie</p>
+      <h1 id="portfolio-title">Portfolio</h1>
+    </div>
+
+    <div class="category-buttons" role="tablist" aria-label="Kategorie portfolio">
+      <button
+        type="button"
+        role="tab"
+        [attr.aria-selected]="activeCategory() === 'slub'"
+        [class.active]="activeCategory() === 'slub'"
+        (click)="selectCategory('slub')"
+      >
+        Slub
+      </button>
+      <button
+        type="button"
+        role="tab"
+        [attr.aria-selected]="activeCategory() === 'chrzest'"
+        [class.active]="activeCategory() === 'chrzest'"
+        (click)="selectCategory('chrzest')"
+      >
+        Chrzest
+      </button>
+    </div>
+
+    <section #gallerySection class="gallery" aria-live="polite">
+      <h2>Galeria: {{ activeCategory() === 'slub' ? 'Slub' : 'Chrzest' }}</h2>
+      <div class="gallery-grid">
+        @for (photo of displayedPhotos(); track photo.image) {
+          <figure class="gallery-item">
+            <button
+              type="button"
+              class="zoom-button"
+              (click)="openLightbox(photo)"
+              [attr.aria-label]="'Powieksz zdjecie ' + photo.title"
+            >
+              <img
+                [ngSrc]="photo.image"
+                width="960"
+                height="720"
+                [alt]="photo.alt"
+                loading="lazy"
+              />
+            </button>
+          </figure>
+        }
+      </div>
+    </section>
+
+    @if (selectedPhoto(); as photo) {
+      <div class="lightbox" (click)="closeLightbox()" role="dialog" aria-modal="true">
+        <div class="lightbox-inner" (click)="$event.stopPropagation()">
+          <button
+            type="button"
+            class="lightbox-nav lightbox-nav-left"
+            (click)="showPreviousPhoto()"
+            aria-label="Poprzednie zdjecie"
+          >
+            &#8592;
+          </button>
+
+          <button
+            type="button"
+            class="lightbox-nav lightbox-nav-right"
+            (click)="showNextPhoto()"
+            aria-label="Nastepne zdjecie"
+          >
+            &#8594;
+          </button>
+
+          <button
+            type="button"
+            class="lightbox-close"
+            (click)="closeLightbox()"
+            aria-label="Zamknij podglad"
+          >
+            Zamknij
+          </button>
+          <img [ngSrc]="photo.image" width="1920" height="1280" [alt]="photo.alt" priority />
+          <p>{{ photo.title }}</p>
+        </div>
+      </div>
+    }
+  </section>
+</main>

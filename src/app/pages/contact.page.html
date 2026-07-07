@@ -1,0 +1,43 @@
+<main class="page-main">
+  <section class="section contact" aria-labelledby="contact-title">
+    <div class="section-title-wrap">
+      <p class="eyebrow">Napisz do mnie</p>
+      <h1 id="contact-title">Kontakt</h1>
+    </div>
+
+    <form class="contact-form" [formGroup]="contactForm" (ngSubmit)="submitForm()">
+      <div class="field-row">
+        <label>
+          Imie
+          <input type="text" formControlName="firstName" placeholder="Np. Anna" />
+        </label>
+        <label>
+          Nazwisko
+          <input type="text" formControlName="lastName" placeholder="Np. Kowalska" />
+        </label>
+      </div>
+
+      <div class="field-row">
+        <label>
+          Data wydarzenia
+          <input type="date" formControlName="eventDate" />
+        </label>
+        <label>
+          E-mail
+          <input type="email" formControlName="email" placeholder="anna@mail.pl" />
+        </label>
+      </div>
+
+      <label>
+        Wiadomosc
+        <textarea
+          formControlName="message"
+          rows="5"
+          placeholder="Opisz prosze rodzaj wydarzenia, lokalizacje i planowany zakres reportazu."
+        ></textarea>
+      </label>
+
+      <button type="submit">Wyslij</button>
+    </form>
+  </section>
+</main>

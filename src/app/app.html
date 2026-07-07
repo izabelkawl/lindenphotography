@@ -1,0 +1,64 @@
+@if (isLoading()) {
+  <div
+    class="startup-loader"
+    [class.startup-loader-closing]="isLoaderClosing()"
+    aria-live="polite"
+    aria-label="Ladowanie strony"
+  >
+    <img
+      ngSrc="/images/kornelia02082.jpg"
+      width="1920"
+      height="1280"
+      priority
+      alt="Podglad zdjecia podczas ladowania"
+    />
+
+    <div class="startup-loader-overlay"></div>
+
+    <div class="startup-loader-content">
+      <p>Ladowanie</p>
+      <strong>{{ loadingProgress().toFixed(0) }}%</strong>
+      <div class="startup-loader-progress">
+        <span [style.width.%]="loadingProgress()"></span>
+      </div>
+    </div>
+  </div>
+}
+
+<header class="top-nav" aria-label="Nawigacja glowna">
+  <nav>
+    <a routerLink="/o-mnie" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+      >O mnie</a
+    >
+    <a routerLink="/portfolio" routerLinkActive="active">Portfolio</a>
+    <a routerLink="/oferta" routerLinkActive="active">Oferta</a>
+    <a routerLink="/kontakt" routerLinkActive="active">Kontakt</a>
+  </nav>
+</header>
+
+<router-outlet />
+
+<footer class="footer" aria-label="Social media">
+  <div class="footer-grid">
+    <nav class="footer-links" aria-label="Menu dolne">
+      <a routerLink="/o-mnie">O mnie</a>
+      <a routerLink="/portfolio">Portfolio</a>
+      <a routerLink="/oferta">Oferta</a>
+      <a routerLink="/kontakt">Kontakt</a>
+    </nav>
+
+    <div class="footer-brand" aria-label="Marka">
+      <p class="brand-mark">L</p>
+      <p class="brand-name">Linden Photography</p>
+      <div class="socials">
+        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+      </div>
+    </div>
+
+    <div class="footer-meta">
+      <p>Reportaze slubne i chrzty</p>
+      <p>Polska, 2026</p>
+    </div>
+  </div>
+</footer>
